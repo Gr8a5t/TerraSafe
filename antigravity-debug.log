@@ -1,0 +1,216 @@
+MESA-INTEL: warning: Haswell Vulkan support is incomplete
+libva error: /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so init failed
+[39538:0908/082607.134039:WARNING:sandbox/policy/linux/sandbox_linux.cc:404] InitializeSandbox() called with multiple threads in process gpu-process.
+[90m[main 2026-09-08T07:26:08.332Z][0m PolicyConfiguration#initialize
+[90m[main 2026-09-08T07:26:08.334Z][0m PolicyConfiguration#updatePolicyDefinitions [
+  'update.mode',
+  'update.channel',
+  'antigravity.enableAgentMode',
+  'http.useLocalProxyConfiguration',
+  'http.electronFetch',
+  'http.proxy',
+  'http.proxyStrictSSL',
+  'http.proxyKerberosServicePrincipal',
+  'http.noProxy',
+  'http.proxyAuthorization',
+  'http.proxySupport',
+  'http.systemCertificates',
+  'http.systemCertificatesNode',
+  'http.experimental.systemCertificatesV2',
+  'http.fetchAdditionalSupport',
+  'http.experimental.networkInterfaceCheckInterval',
+  'telemetry.telemetryLevel',
+  'telemetry.feedback.enabled',
+  'telemetry.enableTelemetry',
+  'extensions.allowed'
+]
+[90m[main 2026-09-08T07:26:08.355Z][0m [File Watcher (node.js)] Request to start watching: /etc/vscode/policy.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),/home/great/.config/Antigravity/User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),/home/great/.config/Antigravity/User/settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+[90m[main 2026-09-08T07:26:08.488Z][0m PolicyConfiguration#update [
+  'update.mode',
+  'telemetry.telemetryLevel',
+  'telemetry.feedback.enabled',
+  'extensions.allowed'
+]
+[90m[main 2026-09-08T07:26:08.488Z][0m PolicyConfiguration#updatePolicyDefinitions [ 'update.enableWindowsBackgroundUpdates' ]
+[90m[main 2026-09-08T07:26:08.489Z][0m PolicyConfiguration#update []
+[90m[main 2026-09-08T07:26:08.489Z][0m [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: /etc/vscode/policy.json (error: Error: ENOENT: no such file or directory, stat '/etc/vscode/policy.json')
+[90m[main 2026-09-08T07:26:08.490Z][0m [File Watcher (node.js)] starting fs.watchFile() on /etc/vscode/policy.json (correlationId: undefined)
+[90m[main 2026-09-08T07:26:08.492Z][0m [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: /home/great/.config/Antigravity/User/settings.json (error: Error: ENOENT: no such file or directory, stat '/home/great/.config/Antigravity/User/settings.json')
+[90m[main 2026-09-08T07:26:08.493Z][0m [File Watcher (node.js)] starting fs.watchFile() on /home/great/.config/Antigravity/User/settings.json (correlationId: undefined)
+[90m[main 2026-09-08T07:26:08.499Z][0m [File Watcher (node.js)] Started watching: '/home/great/.config/Antigravity/User'
+[90m[main 2026-09-08T07:26:08.513Z][0m Set default auto-select family attempt timeout to 1000ms
+[90m[main 2026-09-08T07:26:08.515Z][0m Starting Antigravity
+[90m[main 2026-09-08T07:26:08.515Z][0m from: /usr/share/antigravity/resources/app
+[90m[main 2026-09-08T07:26:08.515Z][0m args: {
+  _: [],
+  diff: false,
+  merge: false,
+  add: false,
+  remove: false,
+  goto: false,
+  'new-window': false,
+  'reuse-window': false,
+  wait: false,
+  help: false,
+  'list-extensions': false,
+  'show-versions': false,
+  'pre-release': false,
+  'update-extensions': false,
+  version: false,
+  verbose: true,
+  status: false,
+  'prof-startup': false,
+  'no-cached-data': false,
+  'prof-v8-extensions': false,
+  'disable-extensions': false,
+  'disable-lcd-text': false,
+  'disable-gpu': false,
+  'disable-chromium-sandbox': false,
+  sandbox: false,
+  telemetry: false,
+  debugRenderer: false,
+  'enable-smoke-test-driver': false,
+  logExtensionHostCommunication: false,
+  'skip-release-notes': false,
+  'skip-welcome': false,
+  'disable-telemetry': false,
+  'disable-updates': false,
+  transient: false,
+  'use-inmemory-secretstorage': false,
+  'disable-workspace-trust': false,
+  'disable-crash-reporter': false,
+  'skip-add-to-recently-opened': false,
+  'open-url': false,
+  'file-write': false,
+  'file-chmod': false,
+  force: false,
+  'do-not-sync': false,
+  'do-not-include-pack-dependencies': false,
+  trace: false,
+  'trace-memory-infra': false,
+  'preserve-env': false,
+  'force-user-env': false,
+  'force-disable-user-env': false,
+  'open-devtools': false,
+  'disable-gpu-sandbox': false,
+  '__enable-file-policy': false,
+  'enable-coi': false,
+  'enable-rdp-display-tracking': false,
+  'disable-layout-restore': false,
+  'disable-experiments': false,
+  'no-proxy-server': false,
+  'no-sandbox': false,
+  nolazy: false,
+  'force-renderer-accessibility': false,
+  'ignore-certificate-errors': false,
+  'allow-insecure-localhost': false,
+  'disable-dev-shm-usage': false,
+  'profile-temp': false,
+  'jetski-agent-window': false,
+  'enable-dev-mode': false,
+  logsPath: '/home/great/.config/Antigravity/logs/20260908T082608'
+}
+[90m[main 2026-09-08T07:26:08.517Z][0m Resolving machine identifier...
+[90m[main 2026-09-08T07:26:08.517Z][0m Resolving SQM identifier...
+[90m[main 2026-09-08T07:26:08.517Z][0m Resolving devDevice identifier...
+[90m[main 2026-09-08T07:26:08.517Z][0m Resolved machine identifier: 40570636db2722fb24d91c588a759f560aa05f07fac60a409979f0bde0eec788
+[90m[main 2026-09-08T07:26:08.518Z][0m Resolved SQM identifier: 
+[90m[main 2026-09-08T07:26:08.518Z][0m Resolved devDevice identifier: b7fbd3ab-8808-4f13-9516-5a0d89e6e4f0
+[90m[main 2026-09-08T07:26:08.518Z][0m Main->SharedProcess#connect
+[90m[main 2026-09-08T07:26:08.523Z][0m PolicyConfiguration#updatePolicyDefinitions [
+  'terminal.integrated.automationProfile.linux',
+  'terminal.integrated.automationProfile.osx',
+  'terminal.integrated.automationProfile.windows',
+  'terminal.integrated.profiles.windows',
+  'terminal.integrated.profiles.osx',
+  'terminal.integrated.profiles.linux',
+  'terminal.integrated.useWslProfiles',
+  'terminal.integrated.inheritEnv',
+  'terminal.integrated.persistentSessionScrollback',
+  'terminal.integrated.showLinkHover',
+  'terminal.integrated.ignoreProcessNames'
+]
+[90m[main 2026-09-08T07:26:08.524Z][0m PolicyConfiguration#updatePolicyDefinitions [
+  'terminal.integrated.defaultProfile.linux',
+  'terminal.integrated.defaultProfile.osx',
+  'terminal.integrated.defaultProfile.windows'
+]
+[90m[main 2026-09-08T07:26:08.526Z][0m PolicyConfiguration#update []
+[90m[main 2026-09-08T07:26:08.526Z][0m PolicyConfiguration#update []
+[90m[main 2026-09-08T07:26:08.531Z][0m StorageMainService: creating application storage
+[90m[main 2026-09-08T07:26:08.551Z][0m ElectronURLListener: waiting for window to be ready to handle URLs...
+[90m[main 2026-09-08T07:26:08.551Z][0m lifecycle (main): phase changed (value: 2)
+[90m[main 2026-09-08T07:26:08.552Z][0m [BrowserOnboardingClientMainService] Starting browser onboarding server
+[90m[main 2026-09-08T07:26:08.554Z][0m windowsManager#open
+[90m[main 2026-09-08T07:26:08.565Z][0m [BrowserOnboardingClientServer] Browser onboarding server started on http://localhost:36819
+[90m[main 2026-09-08T07:26:08.580Z][0m PolicyConfiguration#updatePolicyDefinitions [ 'jetski.showHiddenWindowsAfterDelay' ]
+[90m[main 2026-09-08T07:26:08.581Z][0m PolicyConfiguration#update []
+[90m[main 2026-09-08T07:26:08.584Z][0m Started scanning system extensions
+[90m[main 2026-09-08T07:26:08.589Z][0m windowsManager#open pathsToOpen [
+  {
+    workspace: { id: 'a32ca62d9f04b44525c80135593c2e58', uri: [Vk] },
+    type: 2,
+    exists: true
+  }
+]
+[90m[main 2026-09-08T07:26:08.591Z][0m windowsManager#doOpenFolderOrWorkspace {
+  folderOrWorkspace: {
+    workspace: { id: 'a32ca62d9f04b44525c80135593c2e58', uri: [Vk] },
+    type: 2,
+    exists: true
+  },
+  filesToOpen: undefined
+}
+[90m[main 2026-09-08T07:26:08.594Z][0m IPC Object URL: Registered new channel vscode:5bf5c325-5a0c-4440-af7a-d62d262c09fa.
+[90m[main 2026-09-08T07:26:08.595Z][0m window#validateWindowState: validating window state on 1 display(s) { mode: 0, x: 0, y: 32, width: 1366, height: 736 }
+[90m[main 2026-09-08T07:26:08.595Z][0m window#validateWindowState: single monitor working area { x: 0, y: 32, width: 1366, height: 736 }
+[90m[main 2026-09-08T07:26:08.595Z][0m window#ctor: using window state { mode: 0, x: 0, y: 32, width: 1366, height: 736 }
+[90m[main 2026-09-08T07:26:08.684Z][0m window#load: attempt to load window (id: 1)
+[39576:0908/082608.690524:WARNING:third_party/crashpad/crashpad/client/crashpad_client_linux.cc:376] prctl: Invalid argument (22)
+[90m[main 2026-09-08T07:26:08.704Z][0m StorageMainService: creating workspace storage (a32ca62d9f04b44525c80135593c2e58)
+[90m[main 2026-09-08T07:26:08.711Z][0m windowsManager#open used window count 1 (workspacesToOpen: 0, foldersToOpen: 1, emptyToRestore: 0, maybeOpenEmptyWindow: false)
+[90m[main 2026-09-08T07:26:08.712Z][0m lifecycle (main): phase changed (value: 3)
+[90m[main 2026-09-08T07:26:08.713Z][0m resolveShellEnv(): skipped (VSCODE_CLI is set)
+[90m[main 2026-09-08T07:26:08.720Z][0m update#setState idle
+[90m[main 2026-09-08T07:26:08.898Z][0m resolveShellEnv(): skipped (VSCODE_CLI is set)
+[39483:0908/082609.098812:INFO:CONSOLE:3] "[DEBUG bootstrap-window] cssModules: undefined", source: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/workbench.js (3)
+[39483:0908/082609.098924:INFO:CONSOLE:3] "[DEBUG bootstrap-window] esModule: vs/workbench/workbench.desktop.main", source: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/workbench.js (3)
+[39483:0908/082609.099029:INFO:CONSOLE:3] "[DEBUG bootstrap-window] baseUrl: [object URL]", source: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/workbench.js (3)
+[39483:0908/082609.099100:INFO:CONSOLE:3] "[DEBUG bootstrap-window] new URL: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js", source: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/workbench.js (3)
+[90m[main 2026-09-08T07:26:09.294Z][0m [File Watcher (node.js)] Request to stop watching: /etc/vscode/policy.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),/home/great/.config/Antigravity/User/settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+[90m[main 2026-09-08T07:26:09.294Z][0m [File Watcher (node.js)] stopping file watcher (/etc/vscode/policy.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+[90m[main 2026-09-08T07:26:09.295Z][0m [File Watcher (node.js)] stopping file watcher (/home/great/.config/Antigravity/User/settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+[90m[main 2026-09-08T07:26:09.337Z][0m Scanned system extensions: 101
+[90m[main 2026-09-08T07:26:09.340Z][0m ComputeTargetPlatform: linux-x64
+[90m[main 2026-09-08T07:26:09.341Z][0m Started scanning user extensions Vk {
+  scheme: 'vscode-userdata',
+  authority: '',
+  path: '/home/great/.antigravity/extensions/extensions.json',
+  query: '',
+  fragment: '',
+  _formatted: null,
+  _fsPath: null
+}
+[90m[main 2026-09-08T07:26:09.393Z][0m Scanned user extensions: 22
+[90m[main 2026-09-08T07:26:09.917Z][0m resolveShellEnv(): skipped (VSCODE_CLI is set)
+[90m[main 2026-09-08T07:26:09.950Z][0m IPC Object URL: Registered new channel vscode:befc3e69-959b-4f3b-a320-860ccf22bf5b.
+[39596:0908/082610.061946:WARNING:third_party/crashpad/crashpad/client/crashpad_client_linux.cc:376] prctl: Invalid argument (22)
+[90m[main 2026-09-08T07:26:10.276Z][0m resolveShellEnv(): skipped (VSCODE_CLI is set)
+[39483:0908/082610.351722:INFO:CONSOLE:3] "[DEBUG bootstrap-window] cssModules: undefined", source: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js (3)
+[39483:0908/082610.351880:INFO:CONSOLE:3] "[DEBUG bootstrap-window] esModule: jetskiAgent/main", source: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js (3)
+[39483:0908/082610.352018:INFO:CONSOLE:3] "[DEBUG bootstrap-window] baseUrl: [object URL]", source: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js (3)
+[39483:0908/082610.352249:INFO:CONSOLE:3] "[DEBUG bootstrap-window] new URL: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/jetskiAgent/main.js", source: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js (3)
+[91m[main 2026-09-08T07:26:10.931Z][0m [Themes] Failed to load theme with inheritance: file:///home/great/.antigravity/extensions/beardedbear.beardedtheme-10.1.0-universal/themes/bearded-theme-themanopia.json Sp [Error]: Unable to read file '/home/great/.antigravity/extensions/beardedbear.beardedtheme-10.1.0-universal/themes/bearded-theme-themanopia.json' (Error: Unable to resolve nonexistent file '/home/great/.antigravity/extensions/beardedbear.beardedtheme-10.1.0-universal/themes/bearded-theme-themanopia.json')
+    at HGe.G (file:///usr/share/antigravity/resources/app/out/main.js:4614:9443)
+    at HGe.F (file:///usr/share/antigravity/resources/app/out/main.js:4614:9263)
+    at async HGe.C (file:///usr/share/antigravity/resources/app/out/main.js:4614:8629)
+    at async y8e.y (file:///usr/share/antigravity/resources/app/out/main.js:4581:5182)
+    at async y8e.z (file:///usr/share/antigravity/resources/app/out/main.js:4581:5689)
+    at async y8e.w (file:///usr/share/antigravity/resources/app/out/main.js:4581:4907)
+    at async y8e.t (file:///usr/share/antigravity/resources/app/out/main.js:4581:4213)
+    at async y8e.getCurrentTheme (file:///usr/share/antigravity/resources/app/out/main.js:4581:3478)
+    at async y8e.q (file:///usr/share/antigravity/resources/app/out/main.js:4581:3329) {
+  fileOperationResult: 1,
+  options: { preferUnbuffered: true }
+}
+[90m[main 2026-09-08T07:26:11.233Z][0m lifecycle (main): phase changed (value: 4)
