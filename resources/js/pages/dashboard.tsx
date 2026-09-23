@@ -225,8 +225,18 @@ export default function Dashboard() {
                     center: coords,
                 }),
             });
-            const data = await res.json();
-            if (data.success && data.assessment) {
+            const contentType = res.headers.get('content-type') || '';
+            let data: any = {};
+            if (contentType.includes('application/json')) {
+                data = await res.json();
+            } else {
+                const text = await res.text();
+                console.error("AI assessment non-JSON response:", res.status, text.substring(0, 300));
+                setAiAssessment(`⚠️ Server Error (HTTP ${res.status}): Received non-JSON response from server. Check server logs.`);
+                return;
+            }
+
+            if (res.ok && data.success && data.assessment) {
                 setAiAssessment(data.assessment);
             } else {
                 console.error("AI assessment response error:", res.status, data);

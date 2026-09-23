@@ -126,8 +126,24 @@ export function AskAnalystDrawer({
                 }),
             });
 
-            const data = await res.json();
-            if (data.success && data.reply) {
+            const contentType = res.headers.get('content-type') || '';
+            let data: any = {};
+            if (contentType.includes('application/json')) {
+                data = await res.json();
+            } else {
+                const text = await res.text();
+                console.error("Ask Analyst non-JSON response:", res.status, text.substring(0, 300));
+                const errorMsg: ChatMessage = {
+                    id: `ai-err-${Date.now()}`,
+                    role: 'assistant',
+                    content: `Server Error (HTTP ${res.status}): non-JSON response received from server.`,
+                    timestamp: new Date(),
+                };
+                setMessages((prev) => [...prev, errorMsg]);
+                return;
+            }
+
+            if (res.ok && data.success && data.reply) {
                 const aiMsg: ChatMessage = {
                     id: `ai-${Date.now()}`,
                     role: 'assistant',
@@ -140,7 +156,7 @@ export function AskAnalystDrawer({
                 const errorMsg: ChatMessage = {
                     id: `ai-err-${Date.now()}`,
                     role: 'assistant',
-                    content: data.error || 'Apologies, I encountered an issue connecting to the AI analyst engine. Please try again.',
+                    content: data.error || `Apologies, encountered HTTP ${res.status} issue.`,
                     timestamp: new Date(),
                 };
                 setMessages((prev) => [...prev, errorMsg]);
