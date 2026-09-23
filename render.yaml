@@ -18,3 +18,13 @@ services:
         value: sqlite
       - key: DB_DATABASE
         value: /var/www/html/database/database.sqlite
+      - key: NVIDIA_API_KEY
+        sync: false
+      - key: NVIDIA_BASE_URL
+        value: https://integrate.api.nvidia.com/v1
+      - key: NVIDIA_MODEL
+        value: openai/gpt-oss-20b
+      - key: VITE_MAPBOX_ACCESS_TOKEN
+        sync: false
+      - key: VITE_MAPILLARY_CLIENT_TOKEN
+        sync: false
