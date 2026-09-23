@@ -101,11 +101,14 @@ export function AskAnalystDrawer({
         setIsLoading(true);
 
         try {
+            const csrfToken = (typeof document !== 'undefined' && (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement)?.content) || '';
             const res = await fetch('/api/ai/ask-analyst', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest',
                 },
                 body: JSON.stringify({
                     message: messageText,

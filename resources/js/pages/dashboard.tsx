@@ -206,11 +206,14 @@ export default function Dashboard() {
 
         setIsGeneratingAi(true);
         try {
+            const csrfToken = (typeof document !== 'undefined' && (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement)?.content) || '';
             const res = await fetch('/api/ai/site-assessment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest',
                 },
                 body: JSON.stringify({
                     location_name: activeLocationName,
