@@ -302,7 +302,7 @@ export default function Dashboard() {
                                 >
                                     {/* Google Street View Live Embed Preview */}
                                     <iframe
-                                        src={`https://maps.google.com/maps?q=${coords[0]},${coords[1]}&layer=c&cbll=${coords[0]},${coords[1]}&cbp=11,0,0,0,0&output=svembed`}
+                                        src={`https://maps.google.com/maps?q=${coords[0]},${coords[1]}&layer=c&cbll=${coords[0]},${coords[1]}&cbp=11,0,0,0,0&output=embed`}
                                         title="Google Street View Preview"
                                         className="size-full border-0 pointer-events-none opacity-80 transition group-hover:opacity-100 group-hover:scale-105 duration-300"
                                         loading="lazy"

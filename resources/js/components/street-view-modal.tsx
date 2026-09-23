@@ -32,7 +32,7 @@ export function StreetViewModal({
     if (!isOpen) return null;
 
     // Google Maps Street View 360° URL (snaps to closest street level imagery for coordinates)
-    const googleStreetViewEmbedUrl = `https://maps.google.com/maps?q=${coords[0]},${coords[1]}&layer=c&cbll=${coords[0]},${coords[1]}&cbp=11,0,0,0,0&output=svembed`;
+    const googleStreetViewEmbedUrl = `https://maps.google.com/maps?q=${coords[0]},${coords[1]}&layer=c&cbll=${coords[0]},${coords[1]}&cbp=11,0,0,0,0&output=embed`;
 
     // Google Maps Pinpoint Satellite View
     const googleSatelliteEmbedUrl = `https://maps.google.com/maps?q=${coords[0]},${coords[1]}&t=k&z=18&ie=UTF8&iwloc=&output=embed`;

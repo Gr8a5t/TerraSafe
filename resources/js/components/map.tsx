@@ -462,6 +462,7 @@ export function Map({
     invalidateSizeTrigger,
 }: MapProps) {
     const [isMounted, setIsMounted] = useState(false);
+    const [mapStyle, setMapStyle] = useState<'satellite' | 'streets' | 'topo'>('satellite');
     const [internalIsDrawing, setInternalIsDrawing] = useState(false);
     const isDrawing = isDrawingActive !== undefined ? isDrawingActive : internalIsDrawing;
     const setIsDrawing = useCallback(
@@ -809,7 +810,7 @@ export function Map({
                 </div>
             )}
 
-            {/* Leaflet Satellite Map */}
+            {/* Leaflet Map with Fallback Tiles */}
             <MapContainer
                 center={center}
                 zoom={zoom}
@@ -818,10 +819,25 @@ export function Map({
                 attributionControl={false}
                 doubleClickZoom={!isDrawing && !isEditing}
             >
-                <TileLayer
-                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                    maxZoom={18}
-                />
+                {mapStyle === 'satellite' && (
+                    <TileLayer
+                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                        maxZoom={18}
+                    />
+                )}
+                {mapStyle === 'streets' && (
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        maxZoom={19}
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    />
+                )}
+                {mapStyle === 'topo' && (
+                    <TileLayer
+                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+                        maxZoom={18}
+                    />
+                )}
 
                 <MapRecenter center={center} zoom={zoom} />
                 <MapAutoResize trigger={invalidateSizeTrigger} />
