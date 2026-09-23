@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: terasafe
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: local
+      - key: APP_DEBUG
+        value: true
+      - key: APP_URL
+        generateValue: true
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /var/www/html/database/database.sqlite

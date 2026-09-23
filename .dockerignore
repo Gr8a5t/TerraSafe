@@ -1,0 +1,10 @@
+.git
+.github
+vendor
+node_modules
+public/build
+storage/*.key
+.env
+antigravity-debug.log
+report_document.html
+*.pdf
