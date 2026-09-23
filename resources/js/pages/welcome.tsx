@@ -71,10 +71,13 @@ export default function Welcome() {
                 className="relative flex min-h-screen overflow-hidden bg-[#9fd9f6] text-[#0b1b22]"
                 style={{ fontFamily: '"Anthropic Serif", Georgia, serif' }}
             >
-                <div
+                <img
+                    src="/images/bg.png"
+                    alt=""
                     aria-hidden="true"
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url('/images/bg.png')" }}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover object-center"
                 />
                 <div
                     aria-hidden="true"
