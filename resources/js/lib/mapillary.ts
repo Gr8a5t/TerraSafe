@@ -48,7 +48,16 @@ export async function fetchClosestMapillaryImage(
     customToken?: string,
     expandRadius: boolean = true
 ): Promise<MapillaryImage | null> {
-    const token = customToken || import.meta.env.VITE_MAPILLARY_CLIENT_TOKEN;
+    let token = customToken || (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_MAPILLARY_CLIENT_TOKEN);
+    if (!token && typeof window !== 'undefined') {
+        try {
+            const pageEl = document.getElementById('app');
+            if (pageEl?.dataset?.page) {
+                const pageData = JSON.parse(pageEl.dataset.page);
+                token = pageData?.props?.env?.mapillaryToken;
+            }
+        } catch {}
+    }
     if (!token) return null;
 
     try {

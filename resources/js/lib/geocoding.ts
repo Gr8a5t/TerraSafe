@@ -31,7 +31,20 @@ export function parseCoordinates(query: string): { lat: number; lng: number } | 
     return { lat, lng };
 }
 
-const MAPBOX_TOKEN = (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_MAPBOX_ACCESS_TOKEN) || '';
+function getMapboxToken(): string {
+    if (typeof window !== 'undefined') {
+        try {
+            const pageEl = document.getElementById('app');
+            if (pageEl?.dataset?.page) {
+                const pageData = JSON.parse(pageEl.dataset.page);
+                if (pageData?.props?.env?.mapboxToken) {
+                    return pageData.props.env.mapboxToken;
+                }
+            }
+        } catch {}
+    }
+    return (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_MAPBOX_ACCESS_TOKEN) || '';
+}
 
 /**
  * Known city/region hints — if the query mentions one of these,
@@ -101,7 +114,8 @@ export async function geocodeLocation(query: string): Promise<GeocodedLocation |
     }
 
     // 3. Try Mapbox Geocoding (much better than Nominatim for partial/fuzzy addresses)
-    if (MAPBOX_TOKEN) {
+    const token = getMapboxToken();
+    if (token) {
         const mapboxResult = await geocodeWithMapbox(trimmed);
         if (mapboxResult) return mapboxResult;
     }
@@ -115,9 +129,10 @@ export async function geocodeLocation(query: string): Promise<GeocodedLocation |
  */
 async function geocodeWithMapbox(query: string): Promise<GeocodedLocation | null> {
     try {
+        const token = getMapboxToken();
         const bias = detectCityBias(query);
         const params = new URLSearchParams({
-            access_token: MAPBOX_TOKEN,
+            access_token: token,
             limit: '1',
             language: 'en',
             types: 'address,poi,place,locality,neighborhood',

@@ -42,6 +42,10 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'env' => [
+                'mapboxToken' => env('VITE_MAPBOX_ACCESS_TOKEN'),
+                'mapillaryToken' => env('VITE_MAPILLARY_CLIENT_TOKEN'),
+            ],
         ];
     }
 }
