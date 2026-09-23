@@ -228,9 +228,13 @@ export default function Dashboard() {
             const data = await res.json();
             if (data.success && data.assessment) {
                 setAiAssessment(data.assessment);
+            } else {
+                console.error("AI assessment response error:", res.status, data);
+                setAiAssessment(`⚠️ AI Error (HTTP ${res.status}): ${data.error || data.message || 'Unknown server error'}`);
             }
-        } catch (err) {
-            console.error("AI assessment failed", err);
+        } catch (err: any) {
+            console.error("AI assessment failed:", err);
+            setAiAssessment(`⚠️ Connection Error: ${err?.message || 'Unknown error'}. Check browser console for details.`);
         } finally {
             setIsGeneratingAi(false);
         }

@@ -145,11 +145,12 @@ export function AskAnalystDrawer({
                 };
                 setMessages((prev) => [...prev, errorMsg]);
             }
-        } catch (err) {
+        } catch (err: any) {
+            console.error('Ask Analyst fetch error:', err);
             const errorMsg: ChatMessage = {
                 id: `ai-err-${Date.now()}`,
                 role: 'assistant',
-                content: 'Network connection issue. Please verify your internet connection and try again.',
+                content: `Connection error: ${err?.message || 'Unknown error'}. Please try again.`,
                 timestamp: new Date(),
             };
             setMessages((prev) => [...prev, errorMsg]);
