@@ -14,7 +14,7 @@ class AiAnalystController extends Controller
         return [
             'base_url' => config('services.nvidia.base_url', 'https://integrate.api.nvidia.com/v1'),
             'api_key' => config('services.nvidia.api_key'),
-            'model' => config('services.nvidia.model', 'openai/gpt-oss-20b'),
+            'model' => config('services.nvidia.model', 'z-ai/glm-5.3'),
         ];
     }
 
@@ -65,12 +65,12 @@ class AiAnalystController extends Controller
             . "3. **Terrain & Environmental Risk**: Drainage, slope, and flood vulnerability considerations based on the geographical coordinates.\n"
             . "4. **Strategic Recommendation**: Key verification checklist before acquisition or construction.";
 
-        $maxAttempts = 3;
-        $timeouts = [30, 45, 60];
+        $maxAttempts = 2;
+        $timeouts = [25, 30]; // 25s, then 30s retry (total max ~56s, safely under Render's 100s proxy timeout)
         $lastException = false;
 
         for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
-            $timeout = $timeouts[$attempt - 1] ?? 60;
+            $timeout = $timeouts[$attempt - 1] ?? 30;
 
             try {
                 $response = Http::withToken($config['api_key'])
@@ -115,7 +115,12 @@ class AiAnalystController extends Controller
                         ]);
                     }
                 } else {
-                    Log::warning("NVIDIA API assessParcel attempt {$attempt}/{$maxAttempts}: HTTP " . $response->status());
+                    $status = $response->status();
+                    if ($status >= 400 && $status < 500) {
+                        Log::error("NVIDIA API assessParcel client error ({$status}): " . $response->body());
+                        break;
+                    }
+                    Log::warning("NVIDIA API assessParcel attempt {$attempt}/{$maxAttempts}: HTTP {$status}");
                 }
             } catch (\Throwable $e) {
                 Log::warning("NVIDIA API assessParcel attempt {$attempt}/{$maxAttempts}: " . $e->getMessage());
@@ -237,12 +242,12 @@ class AiAnalystController extends Controller
         // Current user message
         $messages[] = ['role' => 'user', 'content' => $userMessage];
 
-        $maxAttempts = 3;
-        $timeouts = [30, 45, 60]; // escalating timeouts per attempt
+        $maxAttempts = 2;
+        $timeouts = [25, 30]; // 25s, then 30s retry (total max ~56s, safely under Render's 100s proxy timeout)
         $lastError = null;
 
         for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
-            $timeout = $timeouts[$attempt - 1] ?? 60;
+            $timeout = $timeouts[$attempt - 1] ?? 30;
 
             try {
                 $response = Http::withToken($config['api_key'])
