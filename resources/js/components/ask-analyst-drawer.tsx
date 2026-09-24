@@ -201,7 +201,7 @@ export function AskAnalystDrawer({
                                     AI Land &amp; Zoning Analyst
                                 </h2>
                                 <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold text-emerald-400 border border-emerald-500/30 shrink-0">
-                                    NVIDIA 20B
+                                    Gemini Flash
                                 </span>
                             </div>
                             <p className="text-[11px] text-[#868f89] truncate max-w-md">

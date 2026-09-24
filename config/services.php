@@ -35,10 +35,10 @@ return [
         ],
     ],
 
-    'nvidia' => [
-        'base_url' => env('NVIDIA_BASE_URL', 'https://integrate.api.nvidia.com/v1'),
-        'api_key' => env('NVIDIA_API_KEY'),
-        'model' => env('NVIDIA_MODEL', 'z-ai/glm-5.3'),
+    'google_ai' => [
+        'base_url' => env('GOOGLE_AI_BASE_URL', 'https://generativelanguage.googleapis.com/v1beta/openai'),
+        'api_key' => env('GOOGLE_AI_API_KEY'),
+        'model' => env('GOOGLE_AI_MODEL', 'gemini-3.6-flash'),
     ],
 
 ];

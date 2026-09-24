@@ -12,9 +12,9 @@ class AiAnalystController extends Controller
     private function getClientConfig(): array
     {
         return [
-            'base_url' => config('services.nvidia.base_url', 'https://integrate.api.nvidia.com/v1'),
-            'api_key' => config('services.nvidia.api_key'),
-            'model' => config('services.nvidia.model', 'z-ai/glm-5.3'),
+            'base_url' => config('services.google_ai.base_url', 'https://generativelanguage.googleapis.com/v1beta/openai'),
+            'api_key' => config('services.google_ai.api_key'),
+            'model' => config('services.google_ai.model', 'gemini-3.6-flash'),
         ];
     }
 
@@ -37,7 +37,7 @@ class AiAnalystController extends Controller
         if (empty($config['api_key'])) {
             return response()->json([
                 'success' => false,
-                'error' => 'NVIDIA API key is not configured in server environment.',
+                'error' => 'Google AI API key is not configured in server environment.',
             ], 500);
         }
 
@@ -76,35 +76,24 @@ class AiAnalystController extends Controller
                 $response = Http::withToken($config['api_key'])
                     ->timeout($timeout)
                     ->connectTimeout(10)
-                    ->withOptions([
-                        'force_ip_resolve' => 'v4',
-                    ])
                     ->post(rtrim($config['base_url'], '/') . '/chat/completions', [
                         'model' => $config['model'],
                         'messages' => [
                             ['role' => 'system', 'content' => $systemPrompt],
                             ['role' => 'user', 'content' => $userPrompt],
                         ],
-                        'temperature' => 0.7,
-                        'max_tokens' => 2048,
-                        'stream' => false,
+                        'max_completion_tokens' => 2048,
                     ]);
 
                 if ($response->successful()) {
                     $data = $response->json();
                     $choice = $data['choices'][0]['message'] ?? [];
                     $content = $choice['content'] ?? '';
-                    $reasoning = $choice['reasoning_content'] ?? null;
-
-                    if (empty(trim($content)) && !empty($reasoning)) {
-                        $content = $reasoning;
-                    }
 
                     if (!empty(trim($content))) {
                         return response()->json([
                             'success' => true,
                             'assessment' => $content,
-                            'reasoning' => $reasoning,
                             'metrics' => [
                                 'area_sqm' => $areaSqm,
                                 'area_sqft' => $areaSqft,
@@ -117,13 +106,13 @@ class AiAnalystController extends Controller
                 } else {
                     $status = $response->status();
                     if ($status >= 400 && $status < 500) {
-                        Log::error("NVIDIA API assessParcel client error ({$status}): " . $response->body());
+                        Log::error("Google AI assessParcel client error ({$status}): " . $response->body());
                         break;
                     }
-                    Log::warning("NVIDIA API assessParcel attempt {$attempt}/{$maxAttempts}: HTTP {$status}");
+                    Log::warning("Google AI assessParcel attempt {$attempt}/{$maxAttempts}: HTTP {$status}");
                 }
             } catch (\Throwable $e) {
-                Log::warning("NVIDIA API assessParcel attempt {$attempt}/{$maxAttempts}: " . $e->getMessage());
+                Log::warning("Google AI assessParcel attempt {$attempt}/{$maxAttempts}: " . $e->getMessage());
                 $lastException = true;
             }
 
@@ -253,38 +242,27 @@ class AiAnalystController extends Controller
                 $response = Http::withToken($config['api_key'])
                     ->timeout($timeout)
                     ->connectTimeout(10)
-                    ->withOptions([
-                        'force_ip_resolve' => 'v4',
-                    ])
                     ->post(rtrim($config['base_url'], '/') . '/chat/completions', [
                         'model' => $config['model'],
                         'messages' => $messages,
-                        'temperature' => 0.7,
-                        'max_tokens' => 2048,
-                        'stream' => false,
+                        'max_completion_tokens' => 2048,
                     ]);
 
                 if ($response->successful()) {
                     $data = $response->json();
                     $choice = $data['choices'][0]['message'] ?? [];
                     $content = $choice['content'] ?? '';
-                    $reasoning = $choice['reasoning_content'] ?? null;
-
-                    if (empty(trim($content)) && !empty($reasoning)) {
-                        $content = $reasoning;
-                    }
 
                     return response()->json([
                         'success' => true,
                         'reply' => $content,
-                        'reasoning' => $reasoning,
                     ]);
                 }
 
                 // Non-200 but not a timeout — don't retry on 4xx client errors
                 $status = $response->status();
                 if ($status >= 400 && $status < 500) {
-                    Log::error("NVIDIA Ask Analyst client error ({$status}): " . $response->body());
+                    Log::error("Google AI Ask Analyst client error ({$status}): " . $response->body());
                     return response()->json([
                         'success' => false,
                         'error' => 'AI Analyst service rejected the request. Please try rephrasing your question.',
@@ -292,14 +270,14 @@ class AiAnalystController extends Controller
                 }
 
                 $lastError = "HTTP {$status}: " . $response->body();
-                Log::warning("NVIDIA Ask Analyst attempt {$attempt}/{$maxAttempts} failed ({$status})");
+                Log::warning("Google AI Ask Analyst attempt {$attempt}/{$maxAttempts} failed ({$status})");
 
             } catch (\Illuminate\Http\Client\ConnectionException $e) {
                 $lastError = $e->getMessage();
-                Log::warning("NVIDIA Ask Analyst attempt {$attempt}/{$maxAttempts} connection error: {$lastError}");
+                Log::warning("Google AI Ask Analyst attempt {$attempt}/{$maxAttempts} connection error: {$lastError}");
             } catch (\Throwable $e) {
                 $lastError = $e->getMessage();
-                Log::warning("NVIDIA Ask Analyst attempt {$attempt}/{$maxAttempts} exception: {$lastError}");
+                Log::warning("Google AI Ask Analyst attempt {$attempt}/{$maxAttempts} exception: {$lastError}");
             }
 
             // Sleep before retrying (skip sleep after last attempt)
@@ -308,7 +286,7 @@ class AiAnalystController extends Controller
             }
         }
 
-        Log::error("NVIDIA Ask Analyst failed after {$maxAttempts} attempts. Last error: {$lastError}");
+        Log::error("Google AI Ask Analyst failed after {$maxAttempts} attempts. Last error: {$lastError}");
         return response()->json([
             'success' => false,
             'error' => 'AI Analyst could not be reached after multiple attempts. The service may be experiencing high demand — please try again in a moment.',

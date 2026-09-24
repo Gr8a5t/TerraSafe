@@ -645,7 +645,7 @@ export default function Dashboard() {
                                                 AI Land Analysis
                                             </span>
                                             <span className="rounded bg-emerald-500/10 px-1.5 py-0.5 text-[8px] font-semibold text-emerald-400 border border-emerald-500/30">
-                                                NVIDIA 20B
+                                                Gemini Flash
                                             </span>
                                         </div>
                                         <button
